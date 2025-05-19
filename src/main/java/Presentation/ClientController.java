@@ -8,11 +8,20 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.Comparator;
 import java.util.List;
-
+/**
+ * ClientController manages interaction between ClientView and ClientBLL.
+ * Handles UI events to add, edit, and delete clients.
+ */
 public class ClientController {
     private ClientView view;
     private ClientBLL clients;
     private OrderBLL orders;
+    /**
+     * Constructs ClientController with the provided ClientView.
+     * Populates the client table and attaches action listeners.
+     *
+     * @param view the ClientView instance to control
+     */
     public ClientController(ClientView view) {
         this.view = view;
         this.clients = new ClientBLL();
@@ -26,7 +35,11 @@ public class ClientController {
         view.deleteButton.addActionListener(e -> deleteClient());
         view.backButton.addActionListener(e -> view.dispose());
     }
-
+    /**
+     * Adds a new client using input from the view's text fields.
+     * Clears the input fields after insertion.
+     * Shows error message dialog on failure.
+     */
     private void addClient() {
         String firstName=view.firstNameField.getText();
         String lastName=view.lastNameField.getText();
@@ -50,7 +63,10 @@ public class ClientController {
         }
 
     }
-
+    /**
+     * Edits the selected client based on the current table row values.
+     * Shows an error message if no row is selected or if update fails.
+     */
     private void editClient() {
         int selectedRow = view.clientTable.getSelectedRow();
         if (selectedRow == -1) {
@@ -77,7 +93,11 @@ public class ClientController {
         }
 
     }
-
+    /**
+     * Deletes the selected client after confirming a row is selected.
+     * Also deletes related orders by client ID.
+     * Refreshes the client table after deletion.
+     */
     private void deleteClient() {
         int selectedRow = view.clientTable.getSelectedRow();
         if (selectedRow == -1) {

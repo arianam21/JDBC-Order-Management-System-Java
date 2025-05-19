@@ -8,7 +8,10 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+/**
+ * Factory class to manage database connections.
+ * Provides methods to create and close database connections, statements, and result sets.
+ */
 public class ConnectionFactory {
 
     private static final Logger LOGGER=Logger.getLogger(ConnectionFactory.class.getName());
@@ -18,6 +21,9 @@ public class ConnectionFactory {
     private static final String PASS ="root";
 
     private static ConnectionFactory singleInstance=new ConnectionFactory();
+    /**
+     * Loads the database driver class.
+     */
     public ConnectionFactory() {
         try{
             Class.forName(DRIVER);
@@ -26,6 +32,11 @@ public class ConnectionFactory {
             ex.printStackTrace();
         }
     }
+    /**
+     * Creates and returns a new database connection.
+     *
+     * @return a new Connection to the database, or null if connection fails.
+     */
     private Connection createConnection() {
         Connection connection = null;
         try {
@@ -36,11 +47,19 @@ public class ConnectionFactory {
         }
         return connection;
     }
-
+    /**
+     * Returns a new connection from the single instance of this factory.
+     *
+     * @return a new Connection.
+     */
     public static Connection getConnection() {
         return singleInstance.createConnection();
     }
-
+    /**
+     * Closes the given database connection.
+     *
+     * @param connection the Connection to be closed.
+     */
     public static void close(Connection connection) {
         if (connection != null) {
             try {
@@ -50,7 +69,11 @@ public class ConnectionFactory {
             }
         }
     }
-
+    /**
+     * Closes the given SQL statement.
+     *
+     * @param statement the Statement to be closed.
+     */
     public static void close(Statement statement) {
         if (statement != null) {
             try {
@@ -60,7 +83,11 @@ public class ConnectionFactory {
             }
         }
     }
-
+    /**
+     * Closes the given result set.
+     *
+     * @param resultSet the ResultSet to be closed.
+     */
     public static void close(ResultSet resultSet) {
         if (resultSet != null) {
             try {

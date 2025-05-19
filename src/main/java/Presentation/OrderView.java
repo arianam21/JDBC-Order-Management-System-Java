@@ -2,7 +2,11 @@ package Presentation;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * The OrderView class represents the GUI for creating and viewing orders.
+ * It provides combo boxes for client and product selection, quantity and address fields,
+ * buttons for creating orders and navigation, and a table to display existing orders.
+ */
 public class OrderView extends JFrame {
     public JComboBox<String> clientBox = new JComboBox<>();
     public JComboBox<String> productBox = new JComboBox<>();
@@ -13,6 +17,9 @@ public class OrderView extends JFrame {
     public JTable orderTable;
     public JScrollPane orderScrollPane;
 
+    /**
+     * Constructs an OrderView with initialized UI components and layout.
+     */
     public OrderView() {
         setTitle("Order Creation");
         setSize(1000, 800);

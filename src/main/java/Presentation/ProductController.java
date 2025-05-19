@@ -11,12 +11,20 @@ import Model.Product;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
-
+/**
+ * The ProductController class handles user actions from the ProductView,
+ * coordinating between the view and the business logic related to products and orders.
+ */
 public class ProductController {
     private ProductView view;
     private ProductBLL products;
     private OrderBLL orders;
-
+    /**
+     * Constructs a ProductController with the given ProductView.
+     * Sets up event listeners for product management operations.
+     *
+     * @param view the ProductView instance to control
+     */
     public ProductController(ProductView view) {
         this.view = view;
         products=new ProductBLL();
@@ -27,7 +35,10 @@ public class ProductController {
         view.deleteButton.addActionListener(e -> deleteProduct());
         view.backButton.addActionListener(e -> view.dispose());
     }
-
+    /**
+     * Adds a new product using data from the view's input fields.
+     * Clears the fields and updates the product table on success.
+     */
     private void addProduct() {
         String name=view.nameField.getText();
         String description=view.descriptionField.getText();
@@ -48,7 +59,10 @@ public class ProductController {
         }
 
     }
-
+    /**
+     * Edits the selected product in the product table based on user modifications.
+     * Shows an error if no product is selected.
+     */
     private void editProduct() {
         int selectedRow = view.productTable.getSelectedRow();
         if (selectedRow == -1) {
@@ -74,7 +88,10 @@ public class ProductController {
             JOptionPane.showMessageDialog(view,e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    /**
+     * Deletes the selected product from the product table.
+     * Checks if there are existing orders referencing the product before deletion.
+     */
     private void deleteProduct() {
         int selectedRow = view.productTable.getSelectedRow();
         if (selectedRow == -1) {

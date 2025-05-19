@@ -1,5 +1,8 @@
 package Model;
-
+/**
+ * Represents a client in the system.
+ * Contains client details such as id, first name, last name, email, phone, and address.
+ */
 public class Client {
     private int id;
     private String firstName;
@@ -7,7 +10,16 @@ public class Client {
     private String email;
     private String phone;
     private String address;
-
+    /**
+     * Constructs a new Client with specified attributes.
+     *
+     * @param id the unique identifier of the client
+     * @param firstName the client's first name
+     * @param lastName the client's last name
+     * @param email the client's email address
+     * @param phone the client's phone number
+     * @param address the client's physical address
+     */
     public Client(int id, String firstName, String lastName, String email, String phone, String address) {
         this.id = id;
         this.firstName = firstName;

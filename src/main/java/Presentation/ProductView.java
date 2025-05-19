@@ -2,7 +2,10 @@ package Presentation;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * The ProductView class represents the GUI for managing products.
+ * It contains buttons for adding, editing, deleting products, and a table to display them.
+ */
 public class ProductView extends JFrame {
     public JButton addButton = new JButton("Add Product");
     public JButton editButton = new JButton("Edit Product");
@@ -10,7 +13,9 @@ public class ProductView extends JFrame {
     public JButton backButton = new JButton("Back");
     public JTable productTable = new JTable();
     public JTextField nameField,descriptionField,priceField,stockField;
-
+    /**
+     * Constructs a new ProductView, initializes the UI components and layout.
+     */
     public ProductView() {
         setTitle("Product Management");
         setSize(1000, 800);

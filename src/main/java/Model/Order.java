@@ -1,5 +1,8 @@
 package Model;
-
+/**
+ * Represents an order placed by a client for a product.
+ * Contains details such as order id, client id, product id, quantity, final price, and shipping address.
+ */
 public class Order {
     private int id;
     private int clientId;
@@ -7,7 +10,16 @@ public class Order {
     private int quantity;
     private int finalPrice;
     private String shippingAddress;
-
+    /**
+     * Constructs a new Order with specified attributes.
+     *
+     * @param id the unique identifier of the order
+     * @param clientId the id of the client who placed the order
+     * @param productId the id of the ordered product
+     * @param quantity the quantity ordered
+     * @param finalPrice the final price for the order
+     * @param shippingAddress the shipping address for the order
+     */
     public Order(int id, int clientId, int productId, int quantity,int finalPrice, String shippingAddress) {
         this.id = id;
         this.clientId = clientId;

@@ -16,10 +16,18 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Abstract Data Access Object providing generic CRUD operations for entities of type T.
+ *
+ * @param <T> the entity type
+ */
 public class AbstractDAO<T> {
     protected static final Logger LOGGER=Logger.getLogger(AbstractDAO.class.getName());
 
     private final Class<T> type;
+    /**
+     * Constructs a new AbstractDAO instance and initializes the entity class type.
+     */
     @SuppressWarnings("unchecked")
     public AbstractDAO() {
         this.type = (Class<T>) ((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
@@ -53,6 +61,12 @@ public class AbstractDAO<T> {
         }
         return list;
     }
+    /**
+     * Finds an entity by its unique ID.
+     *
+     * @param id the ID of the entity to find
+     * @return the entity if found, otherwise null
+     */
     public T findById(int id){
         Connection connection=null;
         PreparedStatement statement=null;
@@ -87,6 +101,11 @@ public class AbstractDAO<T> {
       sb.append(tableName);
       return sb.toString();
   }
+    /**
+     * Retrieves all entities of type T from the database.
+     *
+     * @return a List of all entities, or null if an error occurs
+     */
     public List<T> findAll() {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -132,6 +151,12 @@ public class AbstractDAO<T> {
         sb.append(")");
         return sb.toString();
     }
+    /**
+     * Inserts a new entity into the database.
+     *
+     * @param t the entity to insert
+     * @return the inserted entity, or null if insertion failed
+     */
     public T insert(T t) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -168,7 +193,11 @@ public class AbstractDAO<T> {
         sb.append(" WHERE " + "id" + "=?");
         return sb.toString();
     }
-
+    /**
+     * Deletes an entity from the database by its ID.
+     *
+     * @param id the ID of the entity to delete
+     */
     public void delete(int id) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -200,7 +229,12 @@ public class AbstractDAO<T> {
         sb.append(" WHERE " + "id" + "=?");
         return sb.toString();
     }
-
+    /**
+     * Updates an existing entity in the database.
+     *
+     * @param t the entity with updated data
+     * @return the updated entity, or null if update failed
+     */
     public T update(T t) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -234,7 +268,12 @@ public class AbstractDAO<T> {
         }
         return null;
     }
-
+    /**
+     * Populates a Swing JTable with data from a list of entities.
+     *
+     * @param objects the list of entities to display
+     * @param table   the JTable to populate
+     */
     public void populateTable(List<T> objects, JTable table) {
         if (objects == null || objects.isEmpty()) {
             return;

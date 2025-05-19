@@ -6,7 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+/**
+ * ClientView class represents the client management UI.
+ * Displays clients in a table and provides controls to add, edit, and delete clients.
+ */
 public class ClientView extends JFrame {
     public JButton addButton = new JButton("Add Client");
     public JButton editButton = new JButton("Edit Client");
@@ -14,6 +17,10 @@ public class ClientView extends JFrame {
     public JButton backButton = new JButton("Back");
     public JTable clientTable = new JTable();
     public JTextField firstNameField, lastNameField, emailField, phoneField, addressField;
+    /**
+     * Constructs the ClientView UI.
+     * Sets window properties and initializes all UI components.
+     */
     public ClientView() {
         setTitle("Client Management");
         setSize(1000, 800);

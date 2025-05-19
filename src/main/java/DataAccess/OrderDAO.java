@@ -6,8 +6,16 @@ import java.sql.*;
 import java.util.logging.Level;
 
 import Connection.ConnectionFactory;
-
+/**
+ * Data Access Object for managing orders in the database.
+ */
 public class OrderDAO extends AbstractDAO<Order> {
+    /**
+     * Adds a new order to the database.
+     *
+     * @param order the Order object to add
+     * @return the generated id of the inserted order, or 0 if insertion failed
+     */
     public int addOrder(Order order) {
         Connection connection=null;
         PreparedStatement statement=null;
@@ -38,6 +46,11 @@ public class OrderDAO extends AbstractDAO<Order> {
         }
         return 0;
     }
+    /**
+     * Deletes orders from the database by client ID.
+     *
+     * @param clientId the client ID whose orders should be deleted
+     */
     public void deleteByClientId(int clientId) {
         String query = "DELETE FROM `Order` WHERE clientId = ?";
         try (Connection con = ConnectionFactory.getConnection();

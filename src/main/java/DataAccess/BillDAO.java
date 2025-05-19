@@ -8,9 +8,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
-
+/**
+ * Data Access Object for managing bills in the database.
+ */
 public class BillDAO extends AbstractDAO<Bill> {
-
+    /**
+     * Inserts a new bill entry into the Log table.
+     *
+     * @param bill the Bill object containing bill details to insert
+     */
     public void insertBill(Bill bill) {
         Connection connection = null;
         PreparedStatement statement = null;

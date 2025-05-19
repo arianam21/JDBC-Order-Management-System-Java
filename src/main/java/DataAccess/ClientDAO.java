@@ -11,8 +11,16 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Data Access Object for managing clients in the database.
+ */
 public class ClientDAO extends AbstractDAO<Client> {
-
+    /**
+     * Finds a client by their full name (first and last name).
+     *
+     * @param fullName the full name of the client (format: "FirstName LastName")
+     * @return the Client object if found, otherwise null
+     */
     public Client findByFullName(String fullName) {
         String[] parts = fullName.split(" ");
         String firstName = parts[0];
